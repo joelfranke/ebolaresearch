@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body{
+	<!--width:50%;-->
+	margin:100px auto;
+}
+svg text{
+	font-size:12px;
+	font-family: "Arial", Sans-serif
+}
+rect{
+	shape-rendering:crispEdges;
+}
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="biPartite.js"></script>
+<script>
+var ebola_data=[
+['1977','1976 - England',1],
+['1977','1976 - Sudan',1],
+['1977','1976 - Zaire',2],
+['1978','1976 - England',1],
+['1978','1976 - Sudan',9],
+['1978','1976 - Zaire',7],
+['1979','1976 - England',1],
+['1979','1976 - Sudan',3],
+['1979','1976 - Zaire',4],
+['1979','1977 - Zaire',1],
+['1980','1976 - Sudan',1],
+['1980','1976 - Zaire',3],
+['1980','1977 - Zaire',1],
+['1982','1976 - Sudan',2],
+['1982','1976 - Zaire',2],
+['1982','1977 - Zaire',3],
+['1982','1979 - Sudan',1],
+['1983','1976 - Sudan',4],
+['1983','1976 - Zaire',6],
+['1983','1977 - Zaire',3],
+['1983','1979 - Sudan',4],
+['1984','1976 - Zaire',1],
+['1985','1976 - Zaire',2],
+['1988','1976 - Sudan',1],
+['1988','1976 - Zaire',1],
+['1988','1977 - Zaire',1],
+['1989','1976 - Zaire',1],
+['1990','1989 - USA',2],
+['1991','1989 - USA',1],
+['1992','1976 - Sudan',3],
+['1992','1976 - Zaire',5],
+['1992','1989 - Philippines',2],
+['1992','1989 - USA',7],
+['1992','1990 - USA',6],
+['1993','1976 - Sudan',2],
+['1993','1976 - Zaire',4],
+];
+
+
+
+var width = 610, height = 650, margin ={b:0, t:40, l:170, r:50};
+
+var svg = d3.select("body")
+	.append("svg").attr('width',width).attr('height',(height+margin.b+margin.t))
+	.append("g").attr("transform","translate("+ margin.l+","+margin.t+")");
+
+var data = [ 
+	{data:bP.partData(ebola_data,2), id:'Publ_EbolaOutbreak', header:["Publ Year","Outbreak", "Publications (by year) Referencing Ebola Outbreaks"]},
+	<!--{data:bP.partData(sales_data,3), id:'Sales', header:["Channel","State", "Sales"]}-->
+];
+
+bP.draw(data, svg);
+
+</script>
+</body>
